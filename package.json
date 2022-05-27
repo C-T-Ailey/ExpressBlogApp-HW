@@ -1,0 +1,11 @@
+{
+  "name": "expressmongocrud-personal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "sudo nodemon server.js"
+  },
+  "author": "Chris Ailey",
+  "license": "ISC"
+}
