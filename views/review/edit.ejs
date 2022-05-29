@@ -1,0 +1,34 @@
+<h1>Edit an Entry</h1>
+
+<form method="POST" action="/review/update?_method=PUT">
+
+    <div>
+        <label>Title</label>
+        <input type="text" name="title" value="<%= review.title %>">
+    </div>
+
+    <div>
+        <label>Author</label>
+        <input type="text" name="author" value="<%= review.author %>">
+    </div>
+
+    <div>
+        <label>Year Published</label>
+        <input type="number" name="year" value="<%= review.year %>">
+    </div>
+
+    <div>
+        <label>Read it?</label>
+        <input type="text" name="isRead" value="<%= review.isRead %>">
+    </div>
+
+    <div>
+        <label>Comments</label>
+        <textarea name="comments"><%= review.comments %></textarea>
+    </div>
+
+    <input type="hidden" name="id" value="<%= review._id %>">
+
+    <button type="submit">Update the Bookshelf!</button>
+
+</form>

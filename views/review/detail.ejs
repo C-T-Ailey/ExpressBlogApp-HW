@@ -1,0 +1,25 @@
+<h2><%= review.title %></h2>
+
+<div>
+    Author: <%= review.author %>
+</div>
+
+<div>
+    Year Published: <%= review.year %>
+</div>
+
+<div>
+    Read it?: <%= review.isRead %>
+</div>
+
+<div>
+    Comments: <%= review.comments %>
+</div>
+
+<div>
+    Entry Added: <%= moment(review.createdAt).fromNow() %>
+</div>
+
+<div>
+    Entry Updated: <%= moment(review.updatedAt).fromNow() %>
+</div>

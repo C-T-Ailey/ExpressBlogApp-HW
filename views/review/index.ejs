@@ -1,0 +1,35 @@
+<h1>The Bookshelf</h1>
+
+<table class="table-bordered border-primary">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year Published</th>
+        <th>Read it?</th>
+        <th>Comments</th>
+        <th>Entry Added</th>
+        <th>Entry Updated</th>
+    </tr>
+
+<% reviews.forEach(function(review){ %>
+
+    <tr>
+        <td><a href="/review/detail?id=<%= review._id %>" class="unstyled"><%= review.title %></a></td>
+        <td><%= review.author %></td>
+        <td><%= review.year %></td>
+        <td><%= review.isRead %></td>
+        <td><%= review.comments %></td>
+        <td><%= moment(review.createdAt).fromNow() %></td>
+        <td><%= moment(review.updatedAt).fromNow() %></td>
+
+        <td>
+            <a href="/review/edit?id=<%=review.id%>" class="unstyled">Edit</a>
+        </td>
+        <td>
+            <a href="/review/delete?id=<%=review.id%>" class="unstyled">Delete</a>
+        </td>
+    </tr>
+
+<% }) %>
+
+</table>
