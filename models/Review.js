@@ -2,11 +2,14 @@ const mongoose = require("mongoose");
 
 const reviewSchema = mongoose.Schema({
     title: String,
-    author: String,
     year: Number,
     isRead: Boolean,
     comments: String,
-    cover: String
+    cover: String,
+    author: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Author"
+    }],
 },{
     timestamps: true
 });
@@ -17,4 +20,4 @@ const reviewSchema = mongoose.Schema({
 const Review = mongoose.model("Review", reviewSchema);
 
 
-module.exports = Review;
+module.exports = {Review};

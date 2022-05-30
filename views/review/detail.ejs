@@ -1,8 +1,14 @@
 <h2><%= review.title %></h2>
 
-<div>
+<% review.author.forEach(function(author){ %>
+    <hr>
+    <div>Author(s): <%= author.name %> </div>
+<% }) %>
+<hr>
+<!--<div>
+
     Author: <%= review.author %>
-</div>
+</div>-->
 
 <div>
     Year Published: <%= review.year %>

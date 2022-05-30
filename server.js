@@ -4,7 +4,7 @@ const express= require("express");
 // require Mongoose
 const mongoose = require("mongoose");
 
-// require Express EJS Layouts
+// require Express EJS Layouts (enable EJS file formatting)
 const expressLayouts = require("express-ejs-layouts")
 
 // init express
@@ -22,10 +22,12 @@ const PORT = 4000;
 // importing routes
 const indexRouter = require("./routes/index")
 const reviewRouter = require("./routes/reviews")
+const authorRouter = require("./routes/authors")
 
 //mounting routes
 app.use("/", indexRouter);
 app.use("/", reviewRouter);
+app.use("/", authorRouter);
 
 // listen to port with callback function
 app.listen(PORT, () => console.log(`Running on port ${PORT}`));
@@ -34,7 +36,7 @@ app.listen(PORT, () => console.log(`Running on port ${PORT}`));
 app.set("view engine", "ejs");
 
 // MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/readinglist",
+mongoose.connect("mongodb://127.0.0.1:27017/readinglistMMR",
     {useNewUrlParser: true,
     useUnifiedTopology: true},
     () => {

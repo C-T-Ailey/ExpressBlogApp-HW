@@ -1,6 +1,7 @@
 // CRUD routes/APIs
 
-const Review = require("../models/Review");
+const {Review} = require("../models/Review");
+const {Author} = require("../models/Author");
 const moment = require("moment");
 
 
@@ -8,7 +9,14 @@ const moment = require("moment");
 
 // HTTP GET - load book entry form
 exports.review_create_get = (req, res) => {
-    res.render("review/add");
+
+    Author.find()
+    .then((authors) => {
+        res.render("review/add", {authors});        
+    })
+    .catch(err => {
+        console.log(err);
+    })
 }
 
 //HTTP POST - save entry into database
@@ -19,9 +27,15 @@ exports.review_create_post = (req, res) => {
 
     review.save()
     .then(()=>{
+        req.body.author.forEach(author => {
+            Author.findById(author, (error, author) => {
+                author.review.push(review);
+                author.save()
+            })
+        })
         res.redirect("/review/index");
     })
-    .catch(err => {
+    .catch((err) => {
         console.log(err);
         res.send("Try again later :(")
     })
@@ -29,7 +43,7 @@ exports.review_create_post = (req, res) => {
 
 // HTTP GET - Bookshelf index - load all books
 exports.review_index_get = (req, res) => {
-    Review.find()
+    Review.find().populate("author")
     .then(reviews => {
         res.render("review/index", {reviews, moment})
     })
@@ -42,7 +56,7 @@ exports.review_index_get = (req, res) => {
 exports.review_show_get = (req, res) => {
     console.log(req.query.id);
 
-    Review.findById(req.query.id)
+    Review.findById(req.query.id).populate("author")
     .then(review => {
         res.render("review/detail", {review, moment});
     })

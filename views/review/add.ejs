@@ -9,7 +9,11 @@
 
     <div>
         <label>Author</label>
-        <input type="text" name="author">
+        <select type="text" name="author[]" multiple="multiple">
+            <%  authors.forEach(function(author){ %>
+                <option value="<%= author._id %>"><%= author.name %></option>
+            <% }) %>
+        </select>
     </div>
 
     <div>

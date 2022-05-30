@@ -1,0 +1,28 @@
+<div>
+    <div>
+        <h3><%= author.name %></h3>
+    </div>
+
+    <div>Nationality: <%= author.nationality %></div>
+    <div>Year of Birth: <%= author.yearBorn %></div>
+    <div>Alive?: <%= author.isAlive %></div>
+    <div>Created At: <%= moment(author.createdAt).fromNow() %></div>
+    <div>Updated At: <%= moment(author.updatedAt).fromNow() %></div>
+
+    <br>
+
+<% author.review.forEach(function(review){ %>
+
+    <hr>
+
+    <div>
+        Title: <%= review.title %>
+    </div>
+
+    <div>
+        Year Published: <%= review.year %>
+    </div>
+
+<% }) %>
+
+</div>
