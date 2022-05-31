@@ -6,6 +6,7 @@
         <th>Nationality</th>
         <th>Year of Birth</th>
         <th>Alive?</th>
+        <th>Books</th>
         <th>Entry Added</th>
         <th>Entry Created</th>
         <th>Edit</th>
@@ -19,6 +20,11 @@
         <td><%= author.nationality %></td>
         <td><%= author.yearBorn %></td>
         <td><%= author.isAlive %></td>
+        <td>
+            <% author.review.forEach(function(review){ %>
+            <li> <%= review.title %></li>
+            <% }) %>
+        </td>
         <td><%= moment(author.createdAt).fromNow() %></td>
         <td><%= moment(author.updatedAt).fromNow() %></td>
         <td><a href="/author/edit?id=<%= author.id %>">Edit</a></td>

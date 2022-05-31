@@ -17,11 +17,26 @@
     </div>
     <hr>
     <nav>
-        <a href="/review/index" class="unstyled">Reading List</a> || <a href="/review/add" class="unstyled">Add to Bookshelf</a>
-        || <a href="/author/index" class="unstyled">Lookup by Author</a> || <a href="/author/add" class="unstyled">Add an Author</a>
+        <div>
+            <% if(currentUser) { %>
+                Welcome, <%= currentUser.firstName %>! ||
+                <a href="/auth/logout">Log Out</a>
+                <% }else{ %>
+                    <a href="/auth/signup" class="unstyled">Sign Up</a> || <a href="/auth/login" class="unstyled">Log In</a>
+                <% } %>
+        </div>
+
+        <div>
+            <a href="/review/index" class="unstyled">Reading List</a> || <a href="/review/add" class="unstyled">Add to Bookshelf</a>
+            || <a href="/author/index" class="unstyled">Lookup by Author</a> || <a href="/author/add" class="unstyled">Add an Author</a>
+        </div>
+        
+            
     </nav>
 
     <%- body %>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src=../js/main.js></script>
 </body>
 </html>

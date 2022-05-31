@@ -3,7 +3,7 @@
 const {Author} = require("../models/Author");
 const {Review} = require("../models/Review")
 const moment = require("moment");
-
+const isLoggedIn = require("../helper/isLoggedIn");
 
 // POST/GET/PUT/DELETE - save/retrieve/update/delete
 
@@ -30,7 +30,7 @@ exports.author_create_post = (req, res) => {
 
 // HTTP GET - Bookshelf index - load all books
 exports.author_index_get = (req, res) => {
-    Author.find()
+    Author.find().populate("review")
     .then(authors => {
         res.render("author/index", {authors, moment})
     })
@@ -43,7 +43,7 @@ exports.author_index_get = (req, res) => {
 exports.author_show_get = (req, res) => {
     console.log(req.query.id);
 
-    Author.findById(req.query.id)
+    Author.findById(req.query.id).populate("review")
     .then(author => {
         res.render("author/detail", {author, moment});
     })
